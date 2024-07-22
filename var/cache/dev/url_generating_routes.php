@@ -18,11 +18,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_' => [[], ['_controller' => 'App\\Controller\\Controller::index'], [], [['text', '/']], [], [], []],
-    'app_controller2' => [[], ['_controller' => 'App\\Controller\\Controller2Controller::index'], [], [['text', '/controller2']], [], [], []],
-    'app_controller3' => [[], ['_controller' => 'App\\Controller\\Controller3Controller::index'], [], [['text', '/controller3']], [], [], []],
-    'app_controller4' => [[], ['_controller' => 'App\\Controller\\Controller4Controller::index'], [], [['text', '/controller4']], [], [], []],
+    'app__signup' => [[], ['_controller' => 'App\\Controller\\Controller::signup'], [], [['text', '/Signup.php']], [], [], []],
     'App\Controller\Controller::index' => [[], ['_controller' => 'App\\Controller\\Controller::index'], [], [['text', '/']], [], [], []],
-    'App\Controller\Controller2Controller::index' => [[], ['_controller' => 'App\\Controller\\Controller2Controller::index'], [], [['text', '/controller2']], [], [], []],
-    'App\Controller\Controller3Controller::index' => [[], ['_controller' => 'App\\Controller\\Controller3Controller::index'], [], [['text', '/controller3']], [], [], []],
-    'App\Controller\Controller4Controller::index' => [[], ['_controller' => 'App\\Controller\\Controller4Controller::index'], [], [['text', '/controller4']], [], [], []],
+    'App\Controller\Controller::signup' => [[], ['_controller' => 'App\\Controller\\Controller::signup'], [], [['text', '/Signup.php']], [], [], []],
 ];

@@ -24,3 +24,14 @@ d192c1,127.0.0.1,GET,http://localhost:8000/controller3/index.html.twig,172131558
 309426,127.0.0.1,GET,http://localhost:8000/controller3/,1721315613,,301,request
 6620b7,127.0.0.1,GET,http://localhost:8000/controller3,1721315613,,200,request
 b0cb4b,127.0.0.1,GET,http://localhost:8000/controller4,1721315631,,200,request
+4c4a24,192.168.160.1,GET,http://localhost/,1721664159,,200,request
+715ebc,192.168.160.1,GET,http://localhost/Signup.php,1721664162,1e7730,500,request
+1e7730,192.168.160.1,POST,http://localhost/Signup.php,1721664162,,500,request
+c03ce2,192.168.160.1,GET,http://localhost/style.css,1721664164,ee171f,404,request
+ee171f,192.168.160.1,GET,http://localhost/style.css,1721664164,,404,request
+dd4515,192.168.160.1,GET,http://localhost/Signup.php,1721664171,d565fc,500,request
+d565fc,192.168.160.1,POST,http://localhost/Signup.php,1721664172,,500,request
+94a9a0,192.168.160.1,GET,http://localhost/,1721664379,,200,request
+595deb,192.168.160.1,GET,http://localhost/style.css,1721664383,86cedd,404,request
+86cedd,192.168.160.1,GET,http://localhost/style.css,1721664384,,404,request
+a958cd,192.168.160.1,POST,http://localhost/Signup.php,1721664388,,200,request

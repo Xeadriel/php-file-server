@@ -15,9 +15,7 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_', '_controller' => 'App\\Controller\\Controller::index'], null, null, null, false, false, null]],
-        '/controller2' => [[['_route' => 'app_controller2', '_controller' => 'App\\Controller\\Controller2Controller::index'], null, null, null, false, false, null]],
-        '/controller3' => [[['_route' => 'app_controller3', '_controller' => 'App\\Controller\\Controller3Controller::index'], null, null, null, false, false, null]],
-        '/controller4' => [[['_route' => 'app_controller4', '_controller' => 'App\\Controller\\Controller4Controller::index'], null, null, null, false, false, null]],
+        '/Signup.php' => [[['_route' => 'app__signup', '_controller' => 'App\\Controller\\Controller::signup'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
