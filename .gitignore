@@ -1,3 +1,5 @@
+/dbData/*
+
 /var/*
 /var/
 ###> symfony/framework-bundle ###
