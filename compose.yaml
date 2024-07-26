@@ -9,6 +9,7 @@ services:
       - 80:8000
     command: "/root/.symfony5/bin/symfony server:start"
     restart: always
+    container_name: symfonywebapp
   db:
     image: mysql:5.7.16
     environment:
@@ -18,9 +19,13 @@ services:
     volumes:
       - ./dbData:/var/lib/mysql
       - ./RepositoryInit.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306
     restart: always
+    container_name: mysqldb
   phpmyadmin:
     image: phpmyadmin
     ports:
       - 8080:80
     restart: always
+    container_name: phpmyadmin
