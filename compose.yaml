@@ -20,7 +20,7 @@ services:
       - ./dbData:/var/lib/mysql
       - ./RepositoryInit.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 3306:3306
+      - "5432"
     restart: always
     container_name: mysqldb
   phpmyadmin:
@@ -29,3 +29,13 @@ services:
       - 8080:80
     restart: always
     container_name: phpmyadmin
+  ###> symfony/mailer ###
+  mailer:
+    image: axllent/mailpit
+    ports:
+      - "1025"
+      - "8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+  ###< symfony/mailer ###
