@@ -8,13 +8,18 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+    {% if app.user==null %}
+        <a href={{ path("app_register") }}>
+            Register
+        </a>
+    {% endif %}
+    <a href={{ app.user ? path("app_logout") : path("app_login") }}>
+        {{app.user ? "Logout" : "Login"}}
+    </a>
+</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/mnt/d/Informatik/MyProjects/php-file-server/src/Controller/Controller.php</code></li>
-        <li>Your template at <code>/mnt/d/Informatik/MyProjects/php-file-server/templates//index.html.twig</code></li>
-    </ul>
+<div class="example-wrapper">
+    <input type="text" placeholder="Search..">
 </div>
 {% endblock %}
