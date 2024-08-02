@@ -12,6 +12,11 @@
         {% endblock %}
     </head>
     <body>
+        {% if app.user %}
+            <div class="mb-3"> 
+                <p>Greetings {{ app.user.userIdentifier }} !</p>
+            </div>
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

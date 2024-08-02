@@ -9,7 +9,7 @@
 </style>
 
 <div>
-    {% if app.user==null %}
+    {% if not app.user %}
         <a href={{ path("app_register") }}>
             Register
         </a>

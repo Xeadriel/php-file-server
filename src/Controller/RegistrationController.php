@@ -24,8 +24,16 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {
+    public function register(Request $request, 
+                            UserPasswordHasherInterface $userPasswordHasher, 
+                            EntityManagerInterface $entityManager,
+                            ): Response
+    {   
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        if($this->getUser()){
+            return $this->redirectToRoute("homepage");
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -53,7 +61,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_');
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('registration/register.html.twig', [
