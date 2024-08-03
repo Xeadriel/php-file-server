@@ -10,7 +10,7 @@
 
 <div>
     {% if not app.user %}
-        <a href={{ path("app_register") }}>
+        <a href={{ path('app_register') }}>
             Register
         </a>
     {% endif %}
@@ -19,7 +19,10 @@
     </a>
 </div>
 
-<div class="example-wrapper">
+<div class="search-wrapper">
+    {% if app.user %}
+        <a href={{ path("createpage") }}>Click here to create a page</a>
+    {% endif %}
     <input type="text" placeholder="Search..">
 </div>
 {% endblock %}

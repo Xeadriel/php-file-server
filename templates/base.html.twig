@@ -12,6 +12,7 @@
         {% endblock %}
     </head>
     <body>
+        <a href={{ path("homepage") }}>Home</a>
         {% if app.user %}
             <div class="mb-3"> 
                 <p>Greetings {{ app.user.userIdentifier }} !</p>

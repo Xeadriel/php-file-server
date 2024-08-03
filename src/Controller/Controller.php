@@ -16,4 +16,12 @@ class Controller extends AbstractController
         ]);
     }
 
+    #[Route('/create', name: 'createpage')]
+    public function createpage(): Response
+    {   
+        return $this->render('/createpage/CreatePage.html.twig', [
+            'controller_name' => 'Controller',
+        ]);
+    }
+
 }

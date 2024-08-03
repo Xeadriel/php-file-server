@@ -29,7 +29,6 @@ class RegistrationController extends AbstractController
                             EntityManagerInterface $entityManager,
                             ): Response
     {   
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if($this->getUser()){
             return $this->redirectToRoute("homepage");
         }
