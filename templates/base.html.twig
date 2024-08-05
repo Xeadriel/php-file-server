@@ -12,12 +12,16 @@
         {% endblock %}
     </head>
     <body>
+        <img src={{ app.user ? app.user.getImagePath() : asset("Profile/empty_pict/Default.png") }} alt="">
+        <br>
         <a href={{ path("homepage") }}>Home</a>
         {% if app.user %}
             <div class="mb-3"> 
                 <p>Greetings {{ app.user.userIdentifier }} !</p>
+                <a href={{ path("userpage") }}>userpage</a>
             </div>
         {% endif %}
         {% block body %}{% endblock %}
+        <a href={{ path("aboutus") }}>About us</a>
     </body>
 </html>

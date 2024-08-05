@@ -1,6 +1,10 @@
 twig:
     file_name_pattern: '*.twig'
 
+    paths:
+        # point this wherever your images live
+        'assets/Profile/Pictures': images
+
 when@test:
     twig:
         strict_variables: true
