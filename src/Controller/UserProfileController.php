@@ -18,14 +18,11 @@ class UserProfileController extends AbstractController
     public function userpage(): Response
     {   
         $user = $this->getUser();
-        $img = $user->getImagePath();
-        if ($img == null){
-            
+        
+        if ($user == null){
+            return $this->RedirectToRoute("homepage");
         }
-        return $this->render('/userpage.html.twig', [
-            'imgPath' => $img,
-            ''
-        ]);
+        return $this->render('/user_profile/userpage.html.twig');
     }
 
     #[Route('/editUser', name: 'editUser')]
@@ -43,14 +40,10 @@ class UserProfileController extends AbstractController
             if ($file != null){
                 $path = 'Profile/' . $user->getUsername() . '/';
                 $pictName = 'profile';
-                $extension = $file->guessExtension();
+                $extension = 'png';
 
-                if (!$extension){
-                    $extension = 'png';
-                }
-
-                #$path = $path . $pictName . '.' . $extension;
-                $user->setImagePath($path);
+                $img = $path . $pictName . '.' . $extension;
+                $user->setImagePath($img);
 
                 $file->move($path, $pictName . '.' . $extension);
             }
@@ -60,7 +53,7 @@ class UserProfileController extends AbstractController
 
             return $this->redirectToRoute('editUser');
         }
-        return $this->render('/editUser.html.twig', [
+        return $this->render('/user_profile/editUser.html.twig', [
             'ProfileEditForm' => $form,
         ]);
     }

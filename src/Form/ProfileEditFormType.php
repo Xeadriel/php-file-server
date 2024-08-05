@@ -30,7 +30,7 @@ class ProfileEditFormType extends AbstractType
                 ])
 
             ->add('image_path', FileType::class, [
-                'label' => 'Profile picture: ',
+                'label' => 'Change Profile Picture: ',
                 'data_class' => null,
                 'required' => false
                 ])

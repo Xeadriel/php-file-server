@@ -11,6 +11,6 @@
 <div>
     <a href={{ path("editUser") }}>edit profile</a>
     <p>Hello {{ app.user.userIdentifier}}</p>
-    <img width="200" height="150" src={{ imgPath }} alt={{ app.user.userIdentifier}}>
+    <img width="150" height="200" src={{ app.user.getImagePath() ? app.user.getImagePath : asset("Profile/empty_pict/Default.png") }} alt={{ app.user.userIdentifier}}>
 </div>
 {% endblock %}
