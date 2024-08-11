@@ -35,8 +35,6 @@ class ProfileEditFormType extends AbstractType
                 'required' => false
                 ])
 
-            ->add('isVerified')
-
             ->add('save', SubmitType::class, [
                 'label' => 'save changes'
                 ])
