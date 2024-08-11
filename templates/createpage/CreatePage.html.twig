@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href={{ asset("styles/quill/quill.snow.css") }}>
+	<link rel="stylesheet" href={{ asset("styles/quill/quill.bubble.css.map") }}>
+{% endblock %}
 
 {% block title %}Hello Controller!{% endblock %}
 
@@ -8,5 +12,23 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<textarea> </textarea>
+<div id="editor"></div>
+
+<script src={{ asset("javascript/quill/quill.js") }}></script>
+
+<script>
+	const quill = new Quill('#editor', {
+	modules: {
+	toolbar: true
+	},
+	placeholder: 'Fill me up, senpai ♥',
+	theme: 'snow', // or 'bubble'
+	});
+</script>
+
+
+
 {% endblock %}
+
+
+
