@@ -3,7 +3,7 @@ twig:
 
     paths:
         # point this wherever your images live
-        #'assets/Profile/Pictures': images
+        '%kernel.project_dir%/Pictures/': images
 
 when@test:
     twig:
