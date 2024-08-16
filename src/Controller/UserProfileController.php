@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+
 class UserProfileController extends AbstractController
 {
     #[Route('/userpage', name: 'userpage')]
@@ -38,7 +39,7 @@ class UserProfileController extends AbstractController
             $file = $form['image_path']->getData();
 
             if ($file != null){
-                $path = 'Profile/' . $user->getUsername() . '/';
+                $path = 'Profile/' . $user->getId() . '/';
                 $pictName = 'profile';
                 $extension = 'png';
 

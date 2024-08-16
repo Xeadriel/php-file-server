@@ -8,7 +8,8 @@ services:
     ports:
       - 80:8000
     command: bash -c "
-        chown -R www-data:www-data /var/www
+        chown -R www-data:www-data /var/www/html/public
+        && chown -R www-data:www-data /var/www/html/var
         && /root/.symfony5/bin/symfony server:start
       "
     restart: always
