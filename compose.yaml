@@ -7,7 +7,10 @@ services:
       - "./:/var/www/html"
     ports:
       - 80:8000
-    command: "/root/.symfony5/bin/symfony server:start"
+    command: bash -c "
+        chown -R www-data:www-data /var/www
+        && /root/.symfony5/bin/symfony server:start
+      "
     restart: always
     container_name: symfonywebapp
   db:
