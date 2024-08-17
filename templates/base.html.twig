@@ -12,7 +12,8 @@
         {% endblock %}
     </head>
     <body>
-        <img width="150" height="200" src={{ (app.user and app.user.getImagePath()) ? app.user.getImagePath() : asset("Profile/empty_pict/Default.png") }} alt="">
+        <img width="150" height="200" 
+        src={{ app.user ?  path("profilePict", {name: app.user.getUsername()})  : path("profilePict", {name: "default"}) }} alt="">
         <br>
         <a href={{ path("homepage") }}>Home</a>
         {% if app.user %}

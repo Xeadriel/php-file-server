@@ -11,6 +11,7 @@ use App\Form\ProfileEditFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 
 class UserProfileController extends AbstractController
@@ -19,7 +20,6 @@ class UserProfileController extends AbstractController
     public function userpage(): Response
     {   
         $user = $this->getUser();
-        
         if ($user == null){
             return $this->RedirectToRoute("homepage");
         }
@@ -28,9 +28,13 @@ class UserProfileController extends AbstractController
 
     #[Route('/editUser', name: 'editUser')]
     public function editUser(EntityManagerInterface $entityManager,
-                            Request $request): Response
+                            Request $request,
+                            #[Autowire('%kernel.project_dir%/Pictures/Profile')] string $profPictDirectory): Response
     {   
         $user = $this->getUser();
+        if ($user == null){
+            return $this->RedirectToRoute("homepage");
+        }
         $form = $this->createForm(ProfileEditFormType::class, $user);
         $form->handleRequest($request);
 
@@ -39,7 +43,7 @@ class UserProfileController extends AbstractController
             $file = $form['image_path']->getData();
 
             if ($file != null){
-                $path = 'Profile/' . $user->getId() . '/';
+                $path = $profPictDirectory . '/' . $user->getId() . '/';
                 $pictName = 'profile';
                 $extension = 'png';
 

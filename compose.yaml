@@ -10,6 +10,7 @@ services:
     command: bash -c "
         chown -R www-data:www-data /var/www/html/public
         && chown -R www-data:www-data /var/www/html/var
+        && chown -R www-data:www-data /var/www/html/Pictures
         && /root/.symfony5/bin/symfony server:start
       "
     restart: always
