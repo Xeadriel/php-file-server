@@ -63,4 +63,19 @@ class UserProfileController extends AbstractController
         ]);
     }
 
+
+    #[Route('/deletePP', name: 'deletePP')]
+    public function deletePP(EntityManagerInterface $em): Response
+    {   
+        $user = $this->getUser();
+        if ($user == null){
+            return $this->RedirectToRoute("homepage");
+        }
+        $user->setImagePath("");
+
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute("editUser");
+    }
 }
