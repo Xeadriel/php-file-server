@@ -2,30 +2,100 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href={{ asset("styles/quill/quill.snow.css") }}>
 	<link rel="stylesheet" href={{ asset("styles/quill/quill.bubble.css") }}>
+	<link rel="stylesheet" href={{ asset("styles/katex/katex.min.css") }} />
 {% endblock %}
 
 {% block title %}Hello Controller!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div id="editor"></div>
-
+<script src={{ asset("javascript/katex/katex.min.js") }}></script>
 <script src={{ asset("javascript/quill/quill.js") }}></script>
 
+
+<details>
+  <summary>
+    Show Preview
+  </summary>
+  <div class="ql-editor" contenteditable="false" id="output-html"> </div>
+</details>
+
+
+<div id="toolbar-container">
+  <span class="ql-formats">
+    <select class="ql-font"></select>
+    <select class="ql-size"></select>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-bold"></button>
+    <button class="ql-italic"></button>
+    <button class="ql-underline"></button>
+    <button class="ql-strike"></button>
+  </span>
+  <span class="ql-formats">
+    <select class="ql-color"></select>
+    <select class="ql-background"></select>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-script" value="sub"></button>
+    <button class="ql-script" value="super"></button>
+  </span>
+  <span class="ql-formats">
+    <select class="ql-header"></select>
+    <button class="ql-blockquote"></button>
+    <button class="ql-code-block"></button>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-list" value="ordered"></button>
+    <button class="ql-list" value="bullet"></button>
+    <button class="ql-indent" value="-1"></button>
+    <button class="ql-indent" value="+1"></button>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-direction" value="rtl"></button>
+    <select class="ql-align"></select>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-link"></button>
+    <button class="ql-image"></button>
+    <button class="ql-video"></button>
+    <button class="ql-formula"></button>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-clean"></button>
+  </span>
+</div>
+
+<div id="editor">
+</div>
+
+
 <script>
-	const quill = new Quill('#editor', {
+	var quill = new Quill('#editor', {
 	modules: {
-	toolbar: true
+	toolbar: '#toolbar-container',
 	},
 	placeholder: 'Fill me up, senpai ♥',
 	theme: 'snow', // or 'bubble'
 	});
-</script>
 
+	quill.on('text-change', function(delta, source) {
+		updateHtmlOutput()
+	})
+
+	// Return the HTML content of the editor
+	function getQuillHtml() { return quill.root.innerHTML; }
+
+	function updateHtmlOutput()
+	{
+		let html = getQuillHtml();
+		console.log ( html );
+		document.getElementById('output-html').innerHTML = html;
+
+	}
+
+	updateHtmlOutput()
+</script>
 
 
 {% endblock %}
