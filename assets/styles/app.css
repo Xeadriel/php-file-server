@@ -1,12 +1,20 @@
 body {
-    background-color: skyblue;
+    background-image: url(KonoSuba-Megumin.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 p{
-    color:blueviolet;
+    color:#eee;
 }
 
 .changeTheme {
     background: #1D1E22;
     color: #eee;
-  }
+}
+
+a{
+    color:gold;
+}
