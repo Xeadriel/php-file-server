@@ -66,9 +66,14 @@
   </span>
 </div>
 
-<div id="editor">
-</div>
+<div id="editor"></div>
 
+{# <form>
+	<input type="hidden" id="formInput">
+	<input type="submit" value="Save Page">
+</form> #}
+
+{{form(EditPageForm)}}
 
 <script>
 	var quill = new Quill('#editor', {
@@ -76,7 +81,7 @@
 	toolbar: '#toolbar-container',
 	},
 	placeholder: 'Fill me up, senpai ♥',
-	theme: 'snow', // or 'bubble'
+	theme: 'snow',
 	});
 
 	quill.on('text-change', function(delta, source) {
@@ -91,7 +96,7 @@
 		let html = getQuillHtml();
 		console.log ( html );
 		document.getElementById('output-html').innerHTML = html;
-
+		document.getElementById('edit_page_form_wikiHtml').value  = html;
 	}
 
 	updateHtmlOutput()

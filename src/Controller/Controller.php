@@ -14,14 +14,6 @@ class Controller extends AbstractController
         return $this->render('/index.html.twig');
     }
 
-    #[Route('/create', name: 'createpage')]
-    public function createpage(): Response
-    {   
-        return $this->render('/createpage/CreatePage.html.twig', [
-            'controller_name' => 'Controller',
-        ]);
-    }
-
     #[Route('/aboutus', name: 'aboutus')]
     public function aboutus(): Response
     {   
