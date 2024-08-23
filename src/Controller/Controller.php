@@ -11,9 +11,7 @@ class Controller extends AbstractController
     #[Route('/', name: 'homepage')]
     public function index(): Response
     {   
-        return $this->render('/index.html.twig', [
-            'controller_name' => 'Controller',
-        ]);
+        return $this->render('/index.html.twig');
     }
 
     #[Route('/create', name: 'createpage')]

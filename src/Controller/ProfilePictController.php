@@ -22,6 +22,8 @@ class ProfilePictController extends AbstractController
             $imagePath = $user->getImagePath();
             $image = file_get_contents($imagePath);
         }
-        return new Response($image, 200, ['content-type' => 'image/png']);
+        $response = new Response($image, 200, ['content-type' => 'image/png']);
+        $response->setCache(['no_cache' => true]);
+        return $response;
     }
 }

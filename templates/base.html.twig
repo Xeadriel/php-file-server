@@ -17,7 +17,10 @@
         <img width="150" height="200" 
         src={{ app.user ?  path("profilePict", {name: app.user.getUsername()})  : path("profilePict", {name: "default"}) }} alt="">
         <br>
-        <a href={{ path("homepage") }}>Home</a>
+        <a href="{{ path("homepage") }}">Home</a>
+        <form action={{ path("homepage") }} method="GET">
+            <input type="submit" value="homepage">
+        </form>
         {% if app.user %}
             <div class="mb-3"> 
                 <p>Greetings {{ app.user.userIdentifier }} !</p>
