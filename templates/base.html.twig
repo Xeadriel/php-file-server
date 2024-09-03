@@ -8,27 +8,48 @@
         {% block stylesheets %}{% endblock %}
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
-			
         {% endblock %}
     </head>
     <body>
-        <button class='bx bx-moon' id="themeChange"></button>
-
-        <img width="150" height="200" 
-        src={{ app.user ?  path("profilePict", {name: app.user.getUsername()})  : path("profilePict", {name: "default"}) }} alt="">
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" id="navToggle">&#9776;</a>
+            <button class='bx bx-moon' id="themeChange"></button>
+            <a href={{ path("homepage") }}>Homepage</a>
+            <a href={{ path("aboutus") }}>About Us</a>
+            <a href="javascript:void(0);" class="pplink" id="profileBtn">
+                    <img class ="profilefoto" src={{ app.user ?  
+                    path("profilePict", {name: app.user.getUsername()})  : path("profilePict", {name: "default"}) }}>
+            </a>           
+            <div class="ppdropdown" id="ppdropdown">
+                <a href={{ app.user ? path("app_logout") : path("app_login") }} >
+                    {{app.user ? "Logout" : "Login"}}
+                </a>
+                {% if not app.user %}
+                    <a href={{ path('app_register') }}>
+                        Register
+                    </a>    
+                {% endif %}
+            </div>
+        </div>
+    
         <br>
-        <a href="{{ path("homepage") }}">Home</a>
-        <form action={{ path("homepage") }} method="GET">
-            <input type="submit" value="homepage">
-        </form>
+
         {% if app.user %}
             <div class="mb-3"> 
                 <p>Greetings {{ app.user.userIdentifier }} !</p>
                 <a href={{ path("userpage") }}>userpage</a>
             </div>
         {% endif %}
+
         {% block body %}{% endblock %}
-        <a href={{ path("aboutus") }}>About us</a>
-    
+
+        <audio controls autoplay class="audiobar">
+            <source src="{{ asset("music/audio.mp3") }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio> 
+
+
+        
+
     </body>
 </html>

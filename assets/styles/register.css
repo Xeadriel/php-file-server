@@ -1,0 +1,12 @@
+body{
+    text-align: center;
+}
+
+.registerform{
+    width: 300px;
+    height: 350px;
+    border-radius: 25px;
+    border-style: dashed;
+    display: inline-block;
+    line-height: 2;
+}

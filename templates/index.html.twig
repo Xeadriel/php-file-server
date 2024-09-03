@@ -8,21 +8,10 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div>
-    {% if not app.user %}
-        <a href={{ path('app_register') }}>
-            Register
-        </a>
-    {% endif %}
-    <a href={{ app.user ? path("app_logout") : path("app_login") }}>
-        {{app.user ? "Logout" : "Login"}}
-    </a>
-</div>
-
 <div class="search-wrapper">
     {% if app.user %}
         <a href={{ path("createpage") }}>Click here to create a page</a>
     {% endif %}
-    <input type="text" placeholder="Search..">
+    <input class="searchbar" type="text" placeholder="Search..">
 </div>
 {% endblock %}

@@ -7,41 +7,51 @@ import '../styles/app.css';
  * which should already be in your base.html.twig.
  */
 
-  var theme = localStorage.getItem('theme');
-  if(theme === null){
-    localStorage.setItem('theme', 'light');
-  }
+var theme = localStorage.getItem('theme');
+if(theme === null){
+  localStorage.setItem('theme', 'light');
+}
 
-  const themeBtn = document.getElementById("themeChange");
-  
+const themeBtn = document.getElementById("themeChange");
+const navToggle = document.getElementById("navToggle");
+const profileBtn = document.getElementById("profileBtn");
+
+theme = localStorage.getItem('theme');
+if(theme === 'dark'){
+  document.body.classList.add("changeTheme");
+  themeBtn.classList.add("bx-sun");
+}
+else {
+  document.body.classList.remove("changeTheme");
+  themeBtn.classList.remove("bx-sun");
+}
+
+themeBtn.onclick = () => {
   theme = localStorage.getItem('theme');
-  if(theme === 'dark'){
+  if(theme !== 'dark'){
+    localStorage.setItem('theme', 'dark');
+    theme = localStorage.getItem('theme');
     document.body.classList.add("changeTheme");
-    themeBtn.classList.add("bx-sun");
-  
+    themeBtn.classList.toggle("bx-sun");
   }
   else {
-    document.body.classList.remove("changeTheme");
-    themeBtn.classList.remove("bx-sun");
-  
-  }
-
-  themeBtn.onclick = () => {
+    localStorage.setItem('theme', 'light');
     theme = localStorage.getItem('theme');
-    if(theme !== 'dark'){
-      localStorage.setItem('theme', 'dark');
-      theme = localStorage.getItem('theme');
-      document.body.classList.add("changeTheme");
-      themeBtn.classList.toggle("bx-sun");
-    }
-    else {
-      localStorage.setItem('theme', 'light');
-      theme = localStorage.getItem('theme');
-      document.body.classList.remove("changeTheme");
-      themeBtn.classList.toggle("bx-sun");
-    }
-  }
+    document.body.classList.remove("changeTheme");
+    themeBtn.classList.toggle("bx-sun");
+  }  
+}
 
+navToggle.onclick = function toggleMenu() {
+  let navbar = document.getElementById("navbar");
+  navbar.className = navbar.className === "navbar" ?
+                      "navbar responsive" : "navbar";
+}
 
+/*profileBtn.onclick = function profileMenu() {
+  const pbox = document.getElementById("ppdropdown");
+  pbox.className = pbox.className === "ppdropdown" ?
+                      "ppdropdown dropdown" : "ppdropdown";
+}*/
 
 

@@ -3,6 +3,7 @@
 	<link rel="stylesheet" href={{ asset("styles/quill/quill.snow.css") }}>
 	<link rel="stylesheet" href={{ asset("styles/quill/quill.bubble.css") }}>
 	<link rel="stylesheet" href={{ asset("styles/katex/katex.min.css") }} />
+  <link rel="stylesheet" href={{ asset("styles/quill.css") }} >
 {% endblock %}
 
 {% block title %}Hello Controller!{% endblock %}
@@ -21,7 +22,7 @@
 </details>
 
 
-<div id="toolbar-container">
+<div id="toolbar-container" class="toolbar">
   <span class="ql-formats">
     <select class="ql-font"></select>
     <select class="ql-size"></select>
