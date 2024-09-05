@@ -20,7 +20,8 @@ body a{
     margin-bottom: 10px;
     margin-left:-0.5em;
     margin-right:-0.5em;
-    margin-top:-0.5em;
+    top: 0;
+
 }
 
 .navbar a{
@@ -104,7 +105,7 @@ body a{
     float: right;
     margin: 5px;
     padding: 5px 5px;
-    margin-right: 50px;
+    margin-right: 75px;
 }
 
 .invis{
@@ -135,4 +136,18 @@ body a{
 }
 input:checked ~ .dropdown {
     display: flex;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+.content {
+    padding: 16px;
+}
+
+.sticky + .content {
+    padding-top: 60px;
 }
