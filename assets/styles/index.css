@@ -1,0 +1,11 @@
+.searchbar{
+    text-align: center;
+    display: inline-block;
+    width: 500px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.search-wrapper{
+    text-align: center;
+}

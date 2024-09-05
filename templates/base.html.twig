@@ -16,12 +16,14 @@
             <button class='bx bx-moon' id="themeChange"></button>
             <a href={{ path("homepage") }}>Homepage</a>
             <a href={{ path("aboutus") }}>About Us</a>
-            <a href="javascript:void(0);" class="pplink" id="profileBtn">
+            <label for="toggler" class="pplink">
                     <img class ="profilefoto" src={{ app.user ?  
-                    path("profilePict", {name: app.user.getUsername()})  : path("profilePict", {name: "default"}) }}>
-            </a>           
-            <div class="ppdropdown" id="ppdropdown">
-                <a href={{ app.user ? path("app_logout") : path("app_login") }} >
+                    path("profilePict", {name: app.user.getUsername()}) : path("profilePict", {name: "default"}) }} alt="">
+            </label>
+            <div class="wrapper">
+                <input id="toggler" type="checkbox" class="invis">
+                <div class="dropdown">
+                    <a href={{ app.user ? path("app_logout") : path("app_login") }} >
                     {{app.user ? "Logout" : "Login"}}
                 </a>
                 {% if not app.user %}
@@ -29,11 +31,10 @@
                         Register
                     </a>    
                 {% endif %}
-            </div>
+                </div>
+            </div>           
         </div>
-    
         <br>
-
         {% if app.user %}
             <div class="mb-3"> 
                 <p>Greetings {{ app.user.userIdentifier }} !</p>
@@ -43,13 +44,14 @@
 
         {% block body %}{% endblock %}
 
-        <audio controls autoplay class="audiobar">
+        <audio controls autoplay class="invis">
             <source src="{{ asset("music/audio.mp3") }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio> 
 
 
-        
+    
 
+    
     </body>
 </html>

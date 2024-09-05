@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Controller!{% endblock %}
+{% block title %}Homepage{% endblock %}
+
+{% block stylesheets %} 
+<link rel="stylesheet" href={{ asset("styles/index.css") }} > 
+{% endblock %}
 
 {% block body %}
 <style>
@@ -8,10 +12,15 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="search-wrapper">
-    {% if app.user %}
+{% if app.user %}
         <a href={{ path("createpage") }}>Click here to create a page</a>
-    {% endif %}
-    <input class="searchbar" type="text" placeholder="Search..">
+{% endif %}
+
+<div class="search-wrapper">
+    <form action="search" method="POST">
+        <input class="searchbar" type="text" placeholder="Search..">
+        <button type="submit">Search</button>
+    </form>
+    
 </div>
 {% endblock %}

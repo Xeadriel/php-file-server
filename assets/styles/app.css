@@ -1,11 +1,14 @@
 body {
-    background-image: url(KonoSuba-Megumin.png);
+    background-image: url(../pictures/KonoSuba-Megumin.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
 }
 
+body a{
+    color: #f17171;
+}
 .changeTheme {
     background: #1D1E22;
     color: #eee;
@@ -13,7 +16,7 @@ body {
 
 .navbar{
     background-color: rgb(224, 38, 13);
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 10px;
     margin-left:-0.5em;
     margin-right:-0.5em;
@@ -68,18 +71,6 @@ body {
 
 }
 
-.searchbar{
-    text-align: center;
-    display: inline-block;
-    width: 500px;
-    height: 30px;
-    border-radius: 30px;
-}
-
-.search-wrapper{
-    text-align: center;
-}
-
 @media screen and (max-width: 600px) {
     .navbar a:not(:first-child):not(.pplink) {
         display: none;
@@ -108,37 +99,29 @@ body {
     
 }
 
-.ppdropdown.dropdown a{
-    text-align: right;
-    float: none;
-    display:block
-}
 
-.ppdropdown a{
-    display: none;
-}
-
-.navbar a.pplink{
+.navbar .pplink{
     float: right;
     margin: 5px;
     padding: 5px 5px;
+    margin-right: 50px;
 }
 
-.audiobar{
+.invis{
     display: none;
 }
 
-/*-------------------
+
 .wrapper {
     position: relative;
     text-align: right;
   }
-  input {
+.wrapper input{
     opacity: 0;
     pointer-events: none;
     touch-action: none;
-  }
-  .dropdown {
+}
+.dropdown {
     display: none;
     position: absolute;
     top: calc(100% + 10px);
@@ -146,8 +129,10 @@ body {
     border: 1px solid black;
     padding: 20px;
     gap: 5px;
-    right: 0;
-  }
-  input:checked ~ .dropdown {
+    right: 30px;
+    background-color: rgb(49, 49, 49);
+    border-radius: 20px;
+}
+input:checked ~ .dropdown {
     display: flex;
-  }
+}
