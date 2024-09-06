@@ -13,9 +13,9 @@
     <body>
         <div class="navbar" id="navbar">
             <a href="javascript:void(0);" class="icon" id="navToggle">&#9776;</a>
-            <button class='bx bx-moon' id="themeChange"></button>
             <a href={{ path("homepage") }}>Homepage</a>
             <a href={{ path("aboutus") }}>About Us</a>
+            <button class='bx bx-moon' id="themeChange"></button>
             <label for="toggler" class="pplink">
                     <img class ="profilefoto" src={{ app.user ?  
                     path("profilePict", {name: app.user.getUsername()}) : path("profilePict", {name: "default"}) }} alt="">
@@ -24,13 +24,11 @@
                 <input id="toggler" type="checkbox" class="invis">
                 <div class="dropdown">
                     <a href={{ app.user ? path("app_logout") : path("app_login") }} >
-                    {{app.user ? "Logout" : "Login"}}
-                </a>
-                {% if not app.user %}
-                    <a href={{ path('app_register') }}>
-                        Register
-                    </a>    
-                {% endif %}
+                        {{app.user ? "Logout" : "Login"}}
+                    </a>
+                    <a href={{ app.user ? path('editUser') : path("app_register") }}>
+                        {{ app.user ? "Edit Profile" : "Register"}}
+                    </a>
                 </div>
             </div>           
         </div>

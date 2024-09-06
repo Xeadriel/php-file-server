@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 
-class PageController extends AbstractController
+class WikipageController extends AbstractController
 {
 	#[Route('/create', name: 'createpage')]
 	public function createpage(Request $request): Response
@@ -23,7 +23,8 @@ class PageController extends AbstractController
 		$form->handleRequest($request);
 
 		if($form->isSubmitted() && $form->isValid()){
-			$form['wikiHtml']->getData();
+			$page = $form['wikiHtml']->getData();
+			var_dump($page);
 	//      add repo stuff to save html
 
 	// 	 	redirect to page's link
