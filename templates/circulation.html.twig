@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Everybodys Circulation!    
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href={{ asset("styles/circulation.css") }}>
+{% endblock %}
+
+{% block body %}
+    <video autoplay loop id="myVideo">
+        <source src={{ asset("videos/cipicapa.mp4") }} type="video/mp4">
+    </video>
+{% endblock %}

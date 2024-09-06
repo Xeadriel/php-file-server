@@ -22,5 +22,12 @@ class Controller extends AbstractController
         ]);
     }
 
+    #[Route('/cipicapa', name: 'cipicapa')]
+    public function circulation(): Response
+    {   
+        return $this->render('/circulation.html.twig', [
+            'controller_name' => 'Controller',
+        ]);
+    }
     
 }
