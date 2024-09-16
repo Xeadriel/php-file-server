@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -41,6 +43,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_path = null;
+
+    /**
+     * @var Collection<int, WikiPage>
+     */
+    #[ORM\OneToMany(targetEntity: WikiPage::class, mappedBy: 'creator')]
+    private Collection $wikiPages;
+
+    public function __construct()
+    {
+        $this->wikiPages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -149,6 +162,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImagePath(?string $image_path): static
     {
         $this->image_path = $image_path;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, WikiPage>
+     */
+    public function getWikiPages(): Collection
+    {
+        return $this->wikiPages;
+    }
+
+    public function addWikiPage(WikiPage $wikiPage): static
+    {
+        if (!$this->wikiPages->contains($wikiPage)) {
+            $this->wikiPages->add($wikiPage);
+            $wikiPage->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWikiPage(WikiPage $wikiPage): static
+    {
+        if ($this->wikiPages->removeElement($wikiPage)) {
+            // set the owning side to null (unless already changed)
+            if ($wikiPage->getCreator() === $this) {
+                $wikiPage->setCreator(null);
+            }
+        }
 
         return $this;
     }

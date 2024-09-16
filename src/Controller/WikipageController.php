@@ -24,7 +24,7 @@ class WikipageController extends AbstractController
 
 		if($form->isSubmitted() && $form->isValid()){
 			$page = $form['wikiHtml']->getData();
-			var_dump($page);
+			// var_dump($page);
 	//      add repo stuff to save html
 
 	// 	 	redirect to page's link
