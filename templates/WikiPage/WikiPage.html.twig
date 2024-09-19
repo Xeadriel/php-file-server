@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href={{ asset("styles/quill/quill.snow.css") }}>
+	<link rel="stylesheet" href={{ asset("styles/quill/quill.bubble.css") }}>
+	<link rel="stylesheet" href={{ asset("styles/katex/katex.min.css") }} />
+  <link rel="stylesheet" href={{ asset("styles/quill.css") }} >
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<script src={{ asset("javascript/katex/katex.min.js") }}></script>
+<script src={{ asset("javascript/quill/quill.js") }}></script>
+
+
+<div class="ql-editor" contenteditable="false">{{wikiPage|raw}}</div>
+
+{% endblock %}
+
+
+

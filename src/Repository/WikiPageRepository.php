@@ -16,28 +16,30 @@ class WikiPageRepository extends ServiceEntityRepository
         parent::__construct($registry, WikiPage::class);
     }
 
-//    /**
-//     * @return WikiPage[] Returns an array of WikiPage objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('w.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+/**
+ * saves new wikipage or overwrites existing one 
+ * depending on whether id already exists
+ * returns wikipage with given id
+ */
+public function saveWikipage(WikiPage $wikipage): WikiPage
+    {
+        $this->getEntityManager()->persist($wikipage);
+        $this->getEntityManager()->flush();
 
-//    public function findOneBySomeField($value): ?WikiPage
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+		return $wikipage;
+    }
+
+/**
+ * returns wikipage with given id or null if not found
+ */
+public function findPageById($id): ?WikiPage
+	{
+		return $this->createQueryBuilder('w')
+			->andWhere('w.id = :val')
+			->setParameter('val', $id)
+			->getQuery()
+			->setMaxResults(1)
+			->getOneOrNullResult()
+		;
+	}
 }
