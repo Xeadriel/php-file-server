@@ -11,15 +11,16 @@ class ProfilePictController extends AbstractController
 {
     #[Route('/profile/{name}/pp', name: 'profilePict', methods: "GET")]
     public function profilePict(string $name,
-                                #[Autowire('%kernel.project_dir%/Pictures/Profile/empty_pict/Default.png')] string $defaultPictPath
+                                #[Autowire('%kernel.project_dir%/Pictures/Profile/')] string $pictPath
                                 ): Response
     {   
         $user = $this->getUser();
         if($user == null || empty($user->getImagePath())){
+            $defaultPictPath = $pictPath . "empty_pict/Default.png";
             $image = file_get_contents($defaultPictPath);
         }
         else{
-            $imagePath = $user->getImagePath();
+            $imagePath = $pictPath . $user->getImagePath();
             $image = file_get_contents($imagePath);
         }
         $response = new Response($image, 200, ['content-type' => 'image/png']);

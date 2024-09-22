@@ -2,6 +2,12 @@
 
 {% block title %}Hello Controller!{% endblock %}
 
+{% block stylesheets %} 
+<link rel="stylesheet" href={{ asset("styles/editUser.css") }} >
+{% endblock %}
+
+
+
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -10,6 +16,33 @@
 
 <a href={{ path("deletePP") }}>Delete profile picture</a>
 
-{{form(ProfileEditForm)}}
+<div>
+    <p>
+        Click on the Picture below to change your profile picture
+    </p>
+    <label for="croppieHolder">
+        <img id="ppClick" class ="profilefotobig" src= {{ app.user ? 
+        path("profilePict", {name: app.user.getUsername()}) : path("profilePict", {name: "default"}) }} alt="">
+    </label>
+    <input type="file" accept="image/*" id="imgInput">
+</div>
+
+{{ form_start(ProfileEditForm) }}
+    {{ form_widget(ProfileEditForm) }}
+{{ form_end(ProfileEditForm) }}
+
+<div id="cropperModal">
+    <div class="modalContent">
+        <h2>Crop your image</h2>
+        <div id="croppie"></div>
+        <div id="resultwrp">
+            <p>Result!</p>
+            <img src="" alt="" id="croppieResult">        
+        </div>
+        <button id="modalCropBtn">Crop</button>
+        <button id="modalSaveBtn">Save</button>
+        <button id="modalCancelBtn">Cancel</button>
+    </div>
+</div>
 
 {% endblock %}

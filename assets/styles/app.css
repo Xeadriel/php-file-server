@@ -76,6 +76,16 @@ body a{
 
 }
 
+.profilefotobig{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+#changeppBtn{
+    display: none;
+}
+
 @media screen and (max-width: 600px) {
     .navbar a:not(:first-child):not(.pplink) {
         display: none;

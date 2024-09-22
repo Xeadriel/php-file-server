@@ -29,7 +29,7 @@ class UserProfileController extends AbstractController
     #[Route('/editUser', name: 'editUser')]
     public function editUser(EntityManagerInterface $entityManager,
                             Request $request,
-                            #[Autowire('%kernel.project_dir%/Pictures/Profile')] string $profPictDirectory): Response
+                            #[Autowire('%kernel.project_dir%/Pictures/Profile/')] string $ppDir): Response
     {   
         $user = $this->getUser();
         if ($user == null){
@@ -41,16 +41,21 @@ class UserProfileController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             
             $file = $form['image_path']->getData();
+            $imageArray = explode(";", $file);
+            $imageContents = explode(",", $imageArray[1]);
+            $file = base64_decode($imageContents[1]);
 
             if ($file != null){
-                $path = $profPictDirectory . '/' . $user->getId() . '/';
+                $imgPath = $user->getId() . '/';
                 $pictName = 'profile';
                 $extension = 'png';
 
-                $img = $path . $pictName . '.' . $extension;
+                $img = $imgPath . $pictName . '.' . $extension;
                 $user->setImagePath($img);
 
-                $file->move($path, $pictName . '.' . $extension);
+                //$file->move($ppDir . $imgPath, $pictName . '.' . $extension);
+                $path = $ppDir . $imgPath . $pictName . '.' . $extension;
+                file_put_contents($path, $file);
             }
             
             $entityManager->persist($user);

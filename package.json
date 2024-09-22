@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "croppie": "^2.6.5",
     "quill": "^2.0.2"
   }
 }

@@ -9,8 +9,12 @@
 </style>
 
 <div>
+    <p>this is an overview of your userpage</p>
+    <br>
     <a href={{ path("editUser") }}>edit profile</a>
-    <p>Hello {{ app.user.userIdentifier}}</p>
-    <img width="150" height="200" src={{ app.user.getImagePath() ? app.user.getImagePath : asset("Profile/empty_pict/Default.png") }} alt={{ app.user.userIdentifier}}>
+    <br>
+    <img width="150" height="200" 
+    src={{ app.user.getImagePath() ? app.user.getImagePath : asset("Profile/empty_pict/Default.png") }} 
+    alt={{ app.user.userIdentifier}}>
 </div>
 {% endblock %}

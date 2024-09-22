@@ -29,5 +29,5 @@ class Controller extends AbstractController
             'controller_name' => 'Controller',
         ]);
     }
-    
+
 }
