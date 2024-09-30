@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href={{ asset("styles/quill/quill.snow.css") }}>
+	<link rel="stylesheet" href={{ asset("styles/quill/quill.bubble.css") }}>
+	<link rel="stylesheet" href={{ asset("styles/katex/katex.min.css") }} />
+  <link rel="stylesheet" href={{ asset("styles/quill.css") }} >
+{% endblock %}
+
+{% block title %}Wikipage creation{% endblock %}
+
+{% block body %}
+
+<script src={{ asset("javascript/katex/katex.min.js") }}></script>
+<script src={{ asset("javascript/quill/quill.js") }}></script>
+
+
+<details>
+  <summary>
+    Show Preview
+  </summary>
+  <div class="ql-editor" contenteditable="false" id="output-html"> </div>
+</details>
+
+
+<div id="toolbar-container" class="toolbar">
+  <span class="ql-formats">
+    <select class="ql-font"></select>
+    <select class="ql-size"></select>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-bold"></button>
+    <button class="ql-italic"></button>
+    <button class="ql-underline"></button>
+    <button class="ql-strike"></button>
+  </span>
+  <span class="ql-formats">
+    <select class="ql-color"></select>
+    <select class="ql-background"></select>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-script" value="sub"></button>
+    <button class="ql-script" value="super"></button>
+  </span>
+  <span class="ql-formats">
+    <select class="ql-header"></select>
+    <button class="ql-blockquote"></button>
+    <button class="ql-code-block"></button>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-list" value="ordered"></button>
+    <button class="ql-list" value="bullet"></button>
+    <button class="ql-indent" value="-1"></button>
+    <button class="ql-indent" value="+1"></button>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-direction" value="rtl"></button>
+    <select class="ql-align"></select>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-link"></button>
+    <button class="ql-image"></button>
+    <button class="ql-video"></button>
+    <button class="ql-formula"></button>
+  </span>
+  <span class="ql-formats">
+    <button class="ql-clean"></button>
+  </span>
+</div>
+
+<div id="editor"></div>
+
+{{form(EditPageForm)}}
+
+<script>
+	var quill = new Quill('#editor', {
+	modules: {
+	toolbar: '#toolbar-container',
+	},
+	placeholder: 'Fill me up, senpai ♥',
+	theme: 'snow',
+	});
+
+	quill.on('text-change', function(delta, source) {
+		updateHtmlOutput()
+	})
+
+	let h = document.getElementById('edit_page_form_wikiHtml').value;
+	console.log ( h );
+	document.getElementById('output-html').value = h;
+	document.getElementById('editor').value = h;
+	document.getElementById('editor').contentEditable = "true";
+	quill.root.innerHTML = h;
+
+	// Return the HTML content of the editor
+	function getQuillHtml() { return quill.root.innerHTML; }
+
+	function updateHtmlOutput()
+	{
+		let html = getQuillHtml();
+		console.log ( html );
+		document.getElementById('output-html').innerHTML = html;
+		document.getElementById('edit_page_form_wikiHtml').value  = html;
+	}
+
+	updateHtmlOutput()
+</script>
+
+
+{% endblock %}
+
+
+

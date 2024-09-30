@@ -22,7 +22,9 @@ class EditPageForm extends AbstractType
 				)
 			->add('wikiPageCategory', ChoiceType::class,
 					['label' => 'Category', 'choices' => [
-						'Character Creation' => 'Character Creation', 'Lore' => 'Lore', 'Geography' => 'Geography', 'Rules' => 'Rules', 'Combat Rules' => 'Combat Rules', 'Other' => 'Other'],
+						'Character Creation' => 'Character Creation', 'Lore' => 'Lore',
+						'Geography' => 'Geography', 'Rules' => 'Rules',
+						'Combat Rules' => 'Combat Rules', 'Other' => 'Other'],
 					'placeholder' => 'Select a category']
 				)
 			->add('wikiPageTags', TextType::class,

@@ -45,7 +45,6 @@ class WikipageController extends AbstractController
 			$wikiPage->setCategory($pageCategory);
 			$wikiPage = $wikiPageRepository->saveWikiPage($wikiPage);
 			// TODO tags
-			// TODO category
 
 			$pagePath = $pageName . $wikiPage->getId() . ".html";
 			
@@ -57,12 +56,11 @@ class WikipageController extends AbstractController
 
 			$wikiPage = $wikiPageRepository->saveWikiPage($wikiPage);
 
-			// TODO redirect to page
 			return $this->redirectToRoute('wikipage', ['category' => $pageCategory, 'id' => $wikiPage->getId()]);
-	}
-	return $this->render('/WikiPage/CreatePage.html.twig', [
-				'EditPageForm' => $form,
-		]);
+		}
+		return $this->render('/WikiPage/CreatePage.html.twig', [
+					'EditPageForm' => $form,
+			]);
 	}
 
 	#[Route('/page/{category}/{id}', name: 'wikipage')]
@@ -91,49 +89,73 @@ class WikipageController extends AbstractController
 		]);
 	}
 
-	// #[Route('/edit/{id}', name: 'editpage')]
-	// public function editpage(
-	// 	WikiPageRepository $wikiPageRepository, Request $request,
-	// 	#[Autowire('%kernel.project_dir%/WikiPages/')] string $htmlDirectory,
-	// 	$id): Response
-	// {   
-	// 	$wikiPage = $wikiPageRepository->findPageById($id);
+	#[Route('/edit/{id}', name: 'editpage')]
+	public function editpage(
+		WikiPageRepository $wikiPageRepository, Request $request,
+		#[Autowire('%kernel.project_dir%/WikiPages/')] string $htmlDirectory,
+		$id): Response
+	{   
+		$wikiPage = $wikiPageRepository->findPageById($id);
 
-	// 	if($wikiPage == null){
-	// 		return $this->redirectToRoute('homepage');
-	// 	}
+		if($wikiPage == null){
+			return $this->redirectToRoute('homepage');
+		}
 
-	// 	$form = $this->createForm(EditPageForm::class, $wikiPage);
-	// 	$form->handleRequest($request);
+		$form = $this->createForm(EditPageForm::class);
+		$form->handleRequest($request);
 
-	// 	if($form->isSubmitted() && $form->isValid()){
-	// 		$user = $this->getUser();
+		$pagePathOld = $htmlDirectory . $wikiPage->getRawHTMLPath();
+		
+		if(file_exists($pagePathOld)){
+			$page = file_get_contents($pagePathOld);
+		}else{
+			$page = "Page not found";
+		}
+		
 
-	// 		$page = $form['wikiHtml']->getData();
-	// 		$pageName = $form['wikiPageName']->getData();
-	// 		$pageTags = $form['wikiPageTags']->getData();
-	// 		$pageCategory = $form['wikiPageCategory']->getData();
+		if(!($form->isSubmitted() && $form->isValid())){
 
-	// 		$wikiPage->setLastModifiedDate(new \DateTime("now", new \DateTimeZone("UTC")));
-	// 		$wikiPage = $wikiPageRepository->saveWikiPage($wikiPage);
+			$pageName = $form['wikiPageName']->setData($wikiPage->getName());
+			$form['wikiHtml']->setData($page);
+			$pageCategory = $form['wikiPageCategory']->setData($wikiPage->getCategory());
+			// $pageTags = $form['wikiPageTags']->setData($wikiPage->getTags());
+		}
 
-	// 		$pagePath = $htmlDirectory . $wikiPage->getRawHTMLPath();
 
-	// 		$htmlFile = fopen($pagePath, "w");
-	// 		fwrite($htmlFile, $page);
-	// 		fclose($htmlFile);
+		if($form->isSubmitted() && $form->isValid()){
+			$user = $this->getUser();
 
-	// 		// TODO tags
-	// 		// TODO category
+			$page = $form['wikiHtml']->getData();
+			$pageName = $form['wikiPageName']->getData();
+			$pageTags = $form['wikiPageTags']->getData();
+			$pageCategory = $form['wikiPageCategory']->getData();
 
-	// 		// TODO redirect to page
-	// 		return $this->redirectToRoute('homepage');
-	// 	}
+			$pagePath = $htmlDirectory . $pageName . $wikiPage->getId() . ".html";
+			if (! ($pagePathOld == $pagePath)) {
+				unlink($pagePathOld);
+			}
 
-	// 	return $this->render('/WikiPage/EditPage.html.twig', [
-	// 			'EditPageForm' => $form,
-	// 			'wikiPage' => $wikiPage,
-	// 	]);
-	// }
+			$wikiPage->setRawHTMLPath($pageName . $wikiPage->getId() . ".html");
+			$wikiPage->setLastModifiedDate(new \DateTime("now", new \DateTimeZone("UTC")));
+			$wikiPage->setName($pageName);
+			$wikiPage->setCategory($pageCategory);
+			// tags
+
+			$wikiPage->setLastModifiedDate(new \DateTime("now", new \DateTimeZone("UTC")));
+			$wikiPage = $wikiPageRepository->saveWikiPage($wikiPage);
+
+
+			$htmlFile = fopen($pagePath, "w");
+			fwrite($htmlFile, $page);
+			fclose($htmlFile);
+
+			return $this->redirectToRoute('wikipage', ['category' => $pageCategory, 'id' => $wikiPage->getId()]);
+		}
+
+		return $this->render('/WikiPage/EditPage.html.twig', [
+				'EditPageForm' => $form,
+				'wikiPage' => $wikiPage,
+		]);
+	}
 
 }
