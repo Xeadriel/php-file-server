@@ -86,6 +86,7 @@ class WikipageController extends AbstractController
 		return $this->render('/WikiPage/WikiPage.html.twig', [
 				'title' => $wikiPage->getName(),
 				'wikiPage' => $rawHTMLContent,
+				'id' => $wikiPage->getId(),
 		]);
 	}
 

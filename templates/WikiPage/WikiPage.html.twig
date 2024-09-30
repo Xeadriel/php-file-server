@@ -13,6 +13,13 @@
 <script src={{ asset("javascript/katex/katex.min.js") }}></script>
 <script src={{ asset("javascript/quill/quill.js") }}></script>
 
+{% if app.user %}
+	{% if app.user.userIdentifier %}
+            <div class="mb-3"> 
+                <a href="{{ path('editpage', {'id': id}) }}">Edit</a>
+            </div>
+	{% endif %}
+{% endif %}
 
 <div class="ql-editor" contenteditable="false">{{wikiPage|raw}}</div>
 
