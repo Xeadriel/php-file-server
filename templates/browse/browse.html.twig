@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Browse{% endblock %}
+
+{% block body %}
+<h1>Category</h1>
+
+{% for category in categories %}
+<a href={{ path('categories', {'category': category}) }}>{{ category }}</a>
+<br><br>
+{% endfor %}
+
+{# <a href={{ path('categories', {'category': 'Character Creation'}) }}>Character Creation</href>
+<br><br>
+<a href={{ path('categories', {'category': 'Lore'}) }}>Lore</href>
+<br><br>
+<a href={{ path('categories', {'category': 'Geography'}) }}>Geography</href>
+<br><br>
+<a href={{ path('categories', {'category': 'Rules'}) }}>Rules</href>
+<br><br>
+<a href={{ path('categories', {'category': 'Combat Rules'}) }}>Combat Rules</href>
+<br><br>
+<a href={{ path('categories', {'category': 'Other'}) }}>Other</href> #}
+
+{% endblock %}

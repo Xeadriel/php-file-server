@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Browse{% endblock %}
+
+{% block body %}
+
+{% for wikiPage in wikiPages %}
+	<a href="{{ path('wikipage', {'category': wikiPage.category, 'id': wikiPage.id}) }}">{{ wikiPage.name }}</a>
+{% endfor %}
+
+{% endblock %}

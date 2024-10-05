@@ -42,4 +42,17 @@ public function findPageById($id): ?WikiPage
 			->getOneOrNullResult()
 		;
 	}
+
+/**
+ * returns all wikipages with given category or null if not found
+ */
+public function findPagesByCategory($category): ?array
+	{
+		return $this->createQueryBuilder('w')
+			->andWhere('w.category = :val')
+			->setParameter('val', $category)
+			->getQuery()
+			->getResult()
+		;
+	}
 }

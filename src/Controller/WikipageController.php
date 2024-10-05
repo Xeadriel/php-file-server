@@ -63,7 +63,7 @@ class WikipageController extends AbstractController
 			]);
 	}
 
-	#[Route('/page/{category}/{id}', name: 'wikipage')]
+	#[Route('/browse/{category}/{id}', name: 'wikipage')]
 	public function wikipage(
 		WikiPageRepository $wikiPageRepository, Request $request,
 		#[Autowire('%kernel.project_dir%/WikiPages/')] string $htmlDirectory,
