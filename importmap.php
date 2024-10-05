@@ -16,6 +16,10 @@ return [
         'path' => './assets/javascript/app.js',
         'entrypoint' => true,
     ],
+    'edituser' => [
+        'path' => './assets/javascript/edituser.js',
+        'entrypoint' => true,
+    ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],
